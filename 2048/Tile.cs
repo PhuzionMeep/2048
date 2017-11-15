@@ -51,10 +51,10 @@ namespace _2048
             }
         }
 
-        public void merge(Tile tile)
-        {
-            this.setValue(value + tile.getValue());
-        }
+        //public void merge(Tile tile)
+        //{
+        //    this.setValue(value + tile.getValue());
+        //}
 
         public bool equals(Tile otherTile)
         {
@@ -73,18 +73,27 @@ namespace _2048
         {
             this.merged = mergeValue;
         }
+        public bool getMerged()
+        {
+            return merged;
+        }
         
         public int mergeWith(Tile otherTile)
         {
-            //do somthing
-            return value;
+            if (canMergeWith(otherTile))
+            {
+                value *= 2;
+                merged = true;
+                return value;
+            }
+            return -1;
         }
         public bool canMergeWith(Tile otherTile)
         {
-            
+            return !merged && otherTile != null && !otherTile.merged && value == otherTile.getValue();
             //return true or false. It takes in abother tiles and check to see if the two tiles can be merge. 
             //if so merge it.
-            return false;
+            //return false;
         }
         public int Value
         {

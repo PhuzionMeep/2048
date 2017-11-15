@@ -24,11 +24,6 @@ namespace _2048
         private int addNumber = 2;
         private int newX, newY;
 
-        public enum GameState
-        {
-            eGame,
-            eAbout,
-        };
         public enum Direction
         {
             eTOP,
@@ -72,7 +67,7 @@ namespace _2048
             {
                 row = rand.Next(0, rows);               //generate random Cols and rows
                 colum = rand.Next(0, rows);
-                if (board[row, colum].getValue() == 0)
+                if (board[row, colum].getValue() == 0 &&gridEmpty())
                 {
                     value = rand.Next(10) < 9 ? 2 : 4;
                     board[row, colum].setValue(value);
@@ -84,25 +79,41 @@ namespace _2048
         //Check to see if there are move available
         public void MoveAvailable()
         {
-            bool empty = false;  
+            bool result = false;
             for (int i = 0; i < rows; i++)//traverse through the 2D array.
             {
                 for (int j = 0; j < cols; j++)
                 {
                     //if a 0 is found in the 2D array, we can confirm that the board is indeed empty;
-                    //so we set empty to true;
-                    while (board[i, j].getValue() == 0 && !empty) 
+                    //so we set result to true to get out the loop;
+                    while (board[i, j].getValue() == 0 && !result)
                     {
-                        empty = true; 
+                        result = true;
                     }
                 }//end of cols
             }//end of  rows
-             
-            if (!empty) // display Message to let user know if the board is full with no possible merges 
+            if (result && abletoMerge()) // display Message to let user know if the board is full with no possible merges 
             {
                 MessageBox.Show("NO MORE MOVE AVAILABLE, GAME OVER", "GAME OVER");
                 Application.Exit();
             }
+        }
+
+        //traverse through the 2D array and compare the cell around the cell to see if there any value match.
+        public bool abletoMerge()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {//check to see if there any value match ,if match return true;
+                    if (board[j, i] == board[j, i + 1] || board[i, j] ==board[i + 1, j] ||
+                        board[j, 3 - i] ==board[j, 2 - i] ||board[3 - i, j] ==board[2 - i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         //method to see if the player has reached a 2048 tile
@@ -126,7 +137,7 @@ namespace _2048
             }
             return result;
         }
-        public Boolean gameOver()
+        public Boolean gridEmpty()
         {
             bool result = false;
             for (int i = 0; i < rows; i++)//traverse through the 2D array.
@@ -134,7 +145,7 @@ namespace _2048
                 for (int j = 0; j < cols; j++)
                 {
                     //if a 0 is found in the 2D array, we can confirm that the board is indeed empty;
-                    //so we set empty to true;
+                    //so we set result to true;
                     while (board[i, j].getValue() == 0 && !result)
                     {
                         result = true;
@@ -145,10 +156,12 @@ namespace _2048
             return result;
         }
 
-        //Moves tiles and merge tiles 
+        
+
+        //Moves tiles and merge tiles
         public void moveBoard(Direction moveDirection)
         {
-            if (gameOver() == false)
+            if (gridEmpty() == false)
             {
                 return;
             }
@@ -170,9 +183,7 @@ namespace _2048
                                 else if (board[i, k].sameTile(board[i, j]))
                                 {
                                     maxMergedValue = Math.Max(maxMergedValue, board[i, j].increase());
-
-
-                                    board[i, k].removeTile();
+                                   board[i, k].removeTile();
                                     boardAdd = true;
                                     newScore += board[i, j].Value;
                                     break;
@@ -210,6 +221,7 @@ namespace _2048
                                 else if (board[k, j].sameTile(board[i, j]))
                                 {
                                     maxMergedValue = Math.Max(maxMergedValue, board[i, j].increase());
+                                    board[k, j].setMerged(true);
                                     newScore += board[i, j].Value;
                                     board[k, j].removeTile();
                                     boardAdd = true;
@@ -248,6 +260,7 @@ namespace _2048
                                 else if (board[i, k].sameTile(board[i, j]))
                                 {
                                     maxMergedValue = Math.Max(maxMergedValue, board[i, j].increase());
+                                    board[i, k].setMerged(true);
                                     newScore += board[i, j].Value;
                                     board[i, k].removeTile();
                                     boardAdd = true;
@@ -286,6 +299,7 @@ namespace _2048
                                 else if (board[k, j].sameTile(board[i, j]))
                                 {
                                     maxMergedValue = Math.Max(maxMergedValue, board[i, j].increase());
+                                    board[k, j].setMerged(true);
                                     newScore += board[i, j].Value;
                                     board[k, j].removeTile();
                                     boardAdd = true;
@@ -321,7 +335,7 @@ namespace _2048
 
         public void Update()
         {
-            while (!gameOver() && addNumber > 0)
+            while (!gridEmpty() && addNumber > 0)
             {
                 int nX = rand.Next(0, 4), nY = rand.Next(0, 4);
 
@@ -333,6 +347,10 @@ namespace _2048
                     --addNumber;
                 }
             }
+        }
+        public int getScore()
+        {
+            return newScore;
         }
     }//end boardClass
 }//end Namespace

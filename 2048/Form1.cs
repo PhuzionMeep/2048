@@ -99,8 +99,6 @@ namespace _2048
 
         private void btnUP_Click(object sender, EventArgs e)
         {
-            //internalboardRep.addRandomTile();
-           // writeBoard();
             internalboardRep.MoveAvailable();
             internalboardRep.moveBoard(BoardClass.Direction.eTOP);
             writeBoard();
@@ -109,8 +107,6 @@ namespace _2048
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            //internalboardRep.addRandomTile();
-            //writeBoard();
             internalboardRep.MoveAvailable();
             internalboardRep.moveBoard(BoardClass.Direction.eRIGHT);
             writeBoard();
@@ -118,8 +114,6 @@ namespace _2048
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-           // internalboardRep.addRandomTile();
-            //writeBoard();
             internalboardRep.MoveAvailable();
             internalboardRep.moveBoard(BoardClass.Direction.eBOTTOM);
             writeBoard();
@@ -127,8 +121,6 @@ namespace _2048
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-           // internalboardRep.addRandomTile();
-            //writeBoard();
             internalboardRep.MoveAvailable();
             internalboardRep.moveBoard(BoardClass.Direction.eLEFT);
             writeBoard();

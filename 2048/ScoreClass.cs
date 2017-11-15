@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,52 +9,93 @@ namespace _2048
 {
     class ScoreClass
     {
+        
         int score;
-        int bestScore;
+        int bestScore = 0;
 
-        public int scoreCounter(int scoreNumber)
+        /**
+        Constructor. Read best score from file. Reset score.
+        */
+        public ScoreClass()
         {
-            switch (scoreNumber)
-            {
-                case 0:
-                    return 0;
-                case 2:
-                    return 4;
-                case 4:
-                    return 8;
-                case 8:
-                    return 16;
-                case 16:
-                    return 32;
-                case 32:
-                    return 64;
-                case 64:
-                    return 128;
-                case 128:
-                    return 256;
-                case 256:
-                    return 512;
-                case 512:
-                    return 1024;
-                case 1024:
-                    return 2048;
-                //case 2048:
-                //    return 16;
-                //case 4096:
-                //case 8192:
-                //case 16384:
-            }
-
-            return 0;
+            readBestScore();
+            resetScore();
         }
 
+        /**
+        Get score.
+        */
         public int getScore()
         {
             return score;
         }
-        public void setScore(int score)
+
+        /**
+        Get best score.
+        */
+        public int getBestScore()
         {
-            this.score = score; 
+            return bestScore;
+        }
+
+        /**
+        Write best score to text file named scores.txt
+        */
+        public void writeBestScore()
+        {
+            using (StreamWriter streamWriter = new StreamWriter("score.txt"))
+            {
+                streamWriter.Write(bestScore.ToString());
+                streamWriter.Flush();
+            }
+        }
+
+        /**
+        Read best score from file scores.txt.
+        */
+        private void readBestScore()
+        {
+            using (StreamReader read = new StreamReader("score.txt"))
+            {
+                string textRow = "";
+                if (new FileInfo("score.txt").Length > 0)
+                {
+                    textRow = read.ReadLine();
+                    bestScore = int.Parse(textRow);
+                }
+                else
+                {
+                    bestScore = 0;
+                }
+            }
+        }
+
+        /**
+        Check whether score is the best.
+        */
+        public bool isScoreTheBest()
+        {
+            if (score > bestScore)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /**
+        Set score to 0 (reset).
+        */
+        public void resetScore()
+        {
+            score = 0;
+        }
+
+        /**
+        Set best score to 0 (reset).
+        */
+        public void resetBestScore()
+        {
+            bestScore = 0;
         }
     }//end of class
 }//end of namespace
