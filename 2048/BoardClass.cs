@@ -352,6 +352,10 @@ namespace _2048
         {
             return newScore;
         }
+        public void setScoreValue(int value)
+        {
+            this.newScore = value;
+        }
     }//end boardClass
 }//end Namespace
 

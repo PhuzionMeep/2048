@@ -103,12 +103,13 @@ namespace _2048
             internalboardRep.MoveAvailable();
             internalboardRep.moveBoard(BoardClass.Direction.eTOP);
             writeBoard();
-            txtScore.Text = score.getScore().ToString();
-            score.writeScore(txtScore);
-            score.writeBestScore(txtBestScore);
+            score.setScore(internalboardRep.getScoreValue());
+            score.displayScore(txtScore);
+            score.displayBestScore(txtBestScore);
             if (score.isScoreTheBest())
             {
-                score.writeScore(txtBestScore);
+                score.setBestScore(score.getScore());
+                score.writeBestScore();
             }
 
 
@@ -116,15 +117,20 @@ namespace _2048
 
         private void btnRight_Click(object sender, EventArgs e)
         {
+            if (internalboardRep.reach2048())
+            {
+                MessageBox.Show("Winner");
+            }
             internalboardRep.MoveAvailable();
             internalboardRep.moveBoard(BoardClass.Direction.eRIGHT);
             writeBoard();
-            txtScore.Text = score.getScore().ToString();
-            score.writeScore(txtScore);
-            score.writeBestScore(txtBestScore);
+            score.setScore(internalboardRep.getScoreValue());
+            score.displayScore(txtScore);
+            score.displayBestScore(txtBestScore);
             if (score.isScoreTheBest())
             {
-                score.writeScore(txtBestScore);
+                score.setBestScore(score.getScore());
+                score.writeBestScore();
             }
         }
 
@@ -133,12 +139,13 @@ namespace _2048
             internalboardRep.MoveAvailable();
             internalboardRep.moveBoard(BoardClass.Direction.eBOTTOM);
             writeBoard();
-            txtScore.Text = score.getScore().ToString();
-            score.writeScore(txtScore);
-            score.writeBestScore(txtBestScore);
+            score.setScore(internalboardRep.getScoreValue());
+            score.displayScore(txtScore);
+            score.displayBestScore(txtBestScore);
             if (score.isScoreTheBest())
             {
-                score.writeScore(txtBestScore);
+                score.setBestScore(score.getScore());
+                score.writeBestScore();
             }
         }
 
@@ -146,14 +153,15 @@ namespace _2048
         {
             internalboardRep.MoveAvailable();
             internalboardRep.moveBoard(BoardClass.Direction.eLEFT);
-            //txtScore.Text = score.getScore().ToString();
             writeBoard();
-            txtScore.Text = score.getScore().ToString();
-            score.writeScore(txtScore);
-            score.writeBestScore(txtBestScore);
+
+            score.setScore(internalboardRep.getScoreValue());
+            score.displayScore(txtScore);
+            score.displayBestScore(txtBestScore);
             if (score.isScoreTheBest())
             {
-                score.writeScore(txtBestScore);
+                score.setBestScore(score.getScore());
+                score.writeBestScore();
             }
         }
 
@@ -162,6 +170,9 @@ namespace _2048
 
             internalboardRep.fillBoard();
             writeBoard();
+            score.resetScore();
+            internalboardRep.setScoreValue(0);
+            txtScore.Text = "";
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {

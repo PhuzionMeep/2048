@@ -19,9 +19,9 @@ namespace _2048
         */
         public ScoreClass()
         {
-            //readBestScore();
-            // resetScore();
-            score = 0;
+            readBestScore();
+             resetScore();
+            //score = 0;
         }
 
         /**
@@ -42,7 +42,10 @@ namespace _2048
         {
             return bestScore;
         }
-
+        public void setBestScore(int value)
+        {
+            this.bestScore = value;
+        }
         /**
         Write best score to text file named scores.txt
         */
@@ -93,6 +96,7 @@ namespace _2048
         public void resetScore()
         {
             score = 0;
+            
         }
 
         /**
@@ -103,7 +107,7 @@ namespace _2048
             bestScore = 0;
         }
 
-        public void writeScore(TextBox txt)
+        public void displayScore(TextBox txt)
         {
             txt.Text = score.ToString();
         }
@@ -111,7 +115,7 @@ namespace _2048
         /**
         Draw best score value in label.
         */
-        public void writeBestScore(TextBox txt)
+        public void displayBestScore(TextBox txt)
         {
             txt.Text = bestScore.ToString();
         }
