@@ -28,6 +28,7 @@ namespace _2048
         private const int maxCols = 4;// Max Collums
         BoardClass internalboardRep = new BoardClass(); // create the internalBoard Representation of the board.
         private Label[,] newLabel = new Label[maxRows, maxCols];
+        ScoreClass score = new ScoreClass();
 
 
         //This method is a modified version from the NIM game that generate 16 label dynamicaly;
@@ -102,6 +103,14 @@ namespace _2048
             internalboardRep.MoveAvailable();
             internalboardRep.moveBoard(BoardClass.Direction.eTOP);
             writeBoard();
+            txtScore.Text = score.getScore().ToString();
+            score.writeScore(txtScore);
+            score.writeBestScore(txtBestScore);
+            if (score.isScoreTheBest())
+            {
+                score.writeScore(txtBestScore);
+            }
+
 
         }
 
@@ -110,6 +119,13 @@ namespace _2048
             internalboardRep.MoveAvailable();
             internalboardRep.moveBoard(BoardClass.Direction.eRIGHT);
             writeBoard();
+            txtScore.Text = score.getScore().ToString();
+            score.writeScore(txtScore);
+            score.writeBestScore(txtBestScore);
+            if (score.isScoreTheBest())
+            {
+                score.writeScore(txtBestScore);
+            }
         }
 
         private void btnDown_Click(object sender, EventArgs e)
@@ -117,13 +133,28 @@ namespace _2048
             internalboardRep.MoveAvailable();
             internalboardRep.moveBoard(BoardClass.Direction.eBOTTOM);
             writeBoard();
+            txtScore.Text = score.getScore().ToString();
+            score.writeScore(txtScore);
+            score.writeBestScore(txtBestScore);
+            if (score.isScoreTheBest())
+            {
+                score.writeScore(txtBestScore);
+            }
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
             internalboardRep.MoveAvailable();
             internalboardRep.moveBoard(BoardClass.Direction.eLEFT);
+            //txtScore.Text = score.getScore().ToString();
             writeBoard();
+            txtScore.Text = score.getScore().ToString();
+            score.writeScore(txtScore);
+            score.writeBestScore(txtBestScore);
+            if (score.isScoreTheBest())
+            {
+                score.writeScore(txtBestScore);
+            }
         }
 
         private void btnResetGame_Click(object sender, EventArgs e)

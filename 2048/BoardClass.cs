@@ -19,7 +19,6 @@ namespace _2048
         Random rand = new Random();
 
         public Tile[,] board;
-        ScoreClass scores = new ScoreClass();
         int newScore = 0;
         private int addNumber = 2;
         private int newX, newY;
@@ -223,6 +222,7 @@ namespace _2048
                                     maxMergedValue = Math.Max(maxMergedValue, board[i, j].increase());
                                     board[k, j].setMerged(true);
                                     newScore += board[i, j].Value;
+                                    
                                     board[k, j].removeTile();
                                     boardAdd = true;
                                     break;
@@ -300,7 +300,7 @@ namespace _2048
                                 {
                                     maxMergedValue = Math.Max(maxMergedValue, board[i, j].increase());
                                     board[k, j].setMerged(true);
-                                    newScore += board[i, j].Value;
+                                   newScore += board[i, j].Value;
                                     board[k, j].removeTile();
                                     boardAdd = true;
                                     break;
@@ -348,7 +348,7 @@ namespace _2048
                 }
             }
         }
-        public int getScore()
+        public int getScoreValue()
         {
             return newScore;
         }

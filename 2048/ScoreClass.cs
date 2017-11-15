@@ -4,13 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace _2048
 {
     class ScoreClass
     {
         
-        int score;
+        int score=0;
         int bestScore = 0;
 
         /**
@@ -18,8 +19,9 @@ namespace _2048
         */
         public ScoreClass()
         {
-            readBestScore();
-            resetScore();
+            //readBestScore();
+            // resetScore();
+            score = 0;
         }
 
         /**
@@ -29,7 +31,10 @@ namespace _2048
         {
             return score;
         }
-
+        public void setScore(int score)
+        {
+            this.score = score;
+        }
         /**
         Get best score.
         */
@@ -96,6 +101,19 @@ namespace _2048
         public void resetBestScore()
         {
             bestScore = 0;
+        }
+
+        public void writeScore(TextBox txt)
+        {
+            txt.Text = score.ToString();
+        }
+
+        /**
+        Draw best score value in label.
+        */
+        public void writeBestScore(TextBox txt)
+        {
+            txt.Text = bestScore.ToString();
         }
     }//end of class
 }//end of namespace

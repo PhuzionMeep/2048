@@ -28,17 +28,16 @@
             this.pnlBoard = new System.Windows.Forms.Panel();
             this.lblScore = new System.Windows.Forms.Label();
             this.txtScore = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblBestScore = new System.Windows.Forms.Label();
             this.txtBestScore = new System.Windows.Forms.TextBox();
             this.btnResetGame = new System.Windows.Forms.Button();
             this.lblInstruction = new System.Windows.Forms.Label();
             this.lbl2048 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-
-            
             // 
             // btnUP
             // 
+            this.btnUP.AllowDrop = true;
             this.btnUP.Location = new System.Drawing.Point(536, 383);
             this.btnUP.Name = "btnUP";
             this.btnUP.Size = new System.Drawing.Size(47, 32);
@@ -115,15 +114,15 @@
             this.txtScore.Size = new System.Drawing.Size(76, 40);
             this.txtScore.TabIndex = 9;
             // 
-            // label1
+            // lblBestScore
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(487, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 24);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "BEST SCORE:";
+            this.lblBestScore.AutoSize = true;
+            this.lblBestScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBestScore.Location = new System.Drawing.Point(487, 7);
+            this.lblBestScore.Name = "lblBestScore";
+            this.lblBestScore.Size = new System.Drawing.Size(135, 24);
+            this.lblBestScore.TabIndex = 10;
+            this.lblBestScore.Text = "BEST SCORE:";
             // 
             // txtBestScore
             // 
@@ -178,7 +177,7 @@
             this.Controls.Add(this.lblInstruction);
             this.Controls.Add(this.btnResetGame);
             this.Controls.Add(this.txtBestScore);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblBestScore);
             this.Controls.Add(this.txtScore);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.pnlBoard);
@@ -205,7 +204,7 @@
         private System.Windows.Forms.Panel pnlBoard;
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.TextBox txtScore;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblBestScore;
         private System.Windows.Forms.TextBox txtBestScore;
         private System.Windows.Forms.Button btnResetGame;
         private System.Windows.Forms.Label lblInstruction;
