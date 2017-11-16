@@ -1,5 +1,10 @@
 ﻿namespace _2048
 {
+    /* CIS 3309
+  * PROJECT 3: GAME DESIGN
+  * PHU LY AND SANDY YU
+  * INSTRUCTOR: FRANK FRIEDMAN
+  * */
     partial class Form1
     {
         private System.ComponentModel.IContainer components = null;

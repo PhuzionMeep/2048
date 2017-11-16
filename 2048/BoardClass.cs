@@ -128,7 +128,7 @@ namespace _2048
                     //if 2048 is found in the 2D array
                     //we set result to true to indicate
                     //that a 2048 tile was reached  
-                    while (board[i, j].getValue() == 2048)
+                    if (board[i, j].getValue() == 2048 && !result)
                     {
                         result = true;
                     }
