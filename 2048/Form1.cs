@@ -87,7 +87,7 @@ namespace _2048
 
 
 
-       
+        //click event for the quit button which does not save the score 
         private void btnQuit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -96,7 +96,7 @@ namespace _2048
         {
             writeBoard();
         }
-
+        //click event for the up button
         private void btnUP_Click(object sender, EventArgs e)
         {
             if (internalboardRep.reach2048())
@@ -117,7 +117,7 @@ namespace _2048
 
 
         }
-
+        //click event for the right button
         private void btnRight_Click(object sender, EventArgs e)
         {
             if (internalboardRep.reach2048())
@@ -136,7 +136,7 @@ namespace _2048
                 score.writeBestScore();
             }
         }
-
+        //click event for the down button
         private void btnDown_Click(object sender, EventArgs e)
         {
             if (internalboardRep.reach2048())
@@ -155,7 +155,7 @@ namespace _2048
                 score.writeBestScore();
             }
         }
-
+        //click event for the left button
         private void btnLeft_Click(object sender, EventArgs e)
         {
             if (internalboardRep.reach2048())
@@ -175,7 +175,7 @@ namespace _2048
                 score.writeBestScore();
             }
         }
-
+        //resets the game by filling the board with 0, adding the 2 random tiles and resets the score back to 0
         private void btnResetGame_Click(object sender, EventArgs e)
         {
 
@@ -185,35 +185,30 @@ namespace _2048
             internalboardRep.setScoreValue(0);
             txtScore.Text = "";
         }
+        //connects the arrow keys and w,a,s,d keys to the click events of the corresponding keys
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Up || keyData == Keys.W)
             {
                 btnUP.PerformClick();
-                updateGame();
+               
             }
             if (keyData == Keys.Down || keyData == Keys.S)
             {
                 btnDown.PerformClick();
-                updateGame();
+                
             }
             if (keyData == Keys.Left || keyData == Keys.A)
             {
                 btnLeft.PerformClick();
-                updateGame();
+               
             }
             if (keyData == Keys.Right || keyData == Keys.D)
             {
                 btnRight.PerformClick();
-                updateGame();
+            
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
-        public void updateGame()
-        {
-            internalboardRep.Update();
-        }
-
     }
 }

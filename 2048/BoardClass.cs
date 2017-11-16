@@ -337,22 +337,6 @@ namespace _2048
                 this.addRandomTile();
             }
         }
-        //update when using keypress
-        public void Update()
-        {
-            while (!gridEmpty() && addNumber > 0)
-            {
-                int nX = rand.Next(0, 4), nY = rand.Next(0, 4);
-
-                if (board[nX, nY].Value == 0)
-                {
-                    board[nX, nY].Value = rand.Next(0, 20) == 0 ? rand.Next(0, 15) == 0 ? 8 : 4 : 2;
-                    newX = nX;
-                    newY = nY;
-                     --addNumber;
-                }
-            }
-        }
         //a getter for the score 
         public int getScoreValue()
         {
