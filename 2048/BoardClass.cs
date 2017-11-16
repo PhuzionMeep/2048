@@ -21,9 +21,6 @@ namespace _2048
 
         public Tile[,] board;
         int newScore = 0;
-        private int addNumber = 2;
-        private int newX, newY;
-
         public enum Direction
         {
             eTOP,
@@ -119,22 +116,18 @@ namespace _2048
         //method to see if the player has reached a 2048 tile
         //if its reach, game is over 
         public Boolean reach2048()
-        {
+        {          
             bool result = false;
             for (int i = 0; i < rows; i++)//traverse through the 2D array.
             {
                 for (int j = 0; j < cols; j++)
                 {
-                    //if 2048 is found in the 2D array
-                    //we set result to true to indicate
-                    //that a 2048 tile was reached  
                     if (board[i, j].getValue() == 2048 && !result)
                     {
                         result = true;
                     }
-                    return result;
-                }
-            }
+                }//end of cols
+            }//end of  rows
             return result;
         }
 
