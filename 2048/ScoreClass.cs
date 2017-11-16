@@ -14,9 +14,9 @@ namespace _2048
         int score=0;
         int bestScore = 0;
 
-        /**
-        Constructor. Read best score from file. Reset score.
-        */
+        
+        //Constructor. Read best score from file. Reset score.
+        
         public ScoreClass()
         {
             readBestScore();
@@ -24,9 +24,8 @@ namespace _2048
             //score = 0;
         }
 
-        /**
-        Get score.
-        */
+        
+       // Get score
         public int getScore()
         {
             return score;
@@ -35,9 +34,8 @@ namespace _2048
         {
             this.score = score;
         }
-        /**
-        Get best score.
-        */
+        
+        //Get best score.
         public int getBestScore()
         {
             return bestScore;
@@ -46,9 +44,8 @@ namespace _2048
         {
             this.bestScore = value;
         }
-        /**
-        Write best score to text file named scores.txt
-        */
+        
+        //Write best score to text file named scores.txt
         public void writeBestScore()
         {
             using (StreamWriter streamWriter = new StreamWriter("score.txt"))
@@ -58,9 +55,9 @@ namespace _2048
             }
         }
 
-        /**
-        Read best score from file scores.txt.
-        */
+        
+        //Read best score from file scores.txt.
+        
         private void readBestScore()
         {
             using (StreamReader read = new StreamReader("score.txt"))
@@ -78,9 +75,9 @@ namespace _2048
             }
         }
 
-        /**
-        Check whether score is the best.
-        */
+        
+       // Check whether score is the best.
+        
         public bool isScoreTheBest()
         {
             if (score > bestScore)
@@ -90,18 +87,18 @@ namespace _2048
             return false;
         }
 
-        /**
-        Set score to 0 (reset).
-        */
+       
+        //Set score to 0 (reset).
+       
         public void resetScore()
         {
             score = 0;
             
         }
 
-        /**
-        Set best score to 0 (reset).
-        */
+        
+        //Set best score to 0 (reset).
+        
         public void resetBestScore()
         {
             bestScore = 0;
@@ -112,9 +109,9 @@ namespace _2048
             txt.Text = score.ToString();
         }
 
-        /**
-        Draw best score value in label.
-        */
+        
+        //display best score value in label.
+        
         public void displayBestScore(TextBox txt)
         {
             txt.Text = bestScore.ToString();

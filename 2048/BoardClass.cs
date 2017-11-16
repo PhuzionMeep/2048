@@ -11,9 +11,10 @@ using System.Windows.Forms;
   * INSTRUCTOR: FRANK FRIEDMAN
   * */
 namespace _2048
-{
+{       //Purpose of the board class is to keep track of the board, makes the tiles in the board to move. 
     class BoardClass
     {
+        //global attributes
         const int cols = 4;
         const int rows = 4;
         Random rand = new Random();
@@ -30,7 +31,7 @@ namespace _2048
             eLEFT,
             eRIGHT,
         };
-        //private GameState currentGameState = GameState.eGame;
+
         //fill the board with 4 by 4 board with 0s, it creates and instances of tile class
         public void fillBoard()
         {
@@ -54,7 +55,7 @@ namespace _2048
 
         }
 
-
+        //method that adds a random tile value (2 or 4) to the 2D array/on the board 
         public void addRandomTile()
         {
             //Random rand = new Random();
@@ -136,6 +137,8 @@ namespace _2048
             }
             return result;
         }
+
+       //traverses through the 2D array and checks to see if the grid is empty
         public Boolean gridEmpty()
         {
             bool result = false;
@@ -158,6 +161,8 @@ namespace _2048
         
 
         //Moves tiles and merge tiles
+        //The algorithm check for if any two tiles depending on the direction click is the same
+        //if so, merge it and remove one of the tile.
         public void moveBoard(Direction moveDirection)
         {
             if (gridEmpty() == false)
@@ -181,7 +186,7 @@ namespace _2048
                                 }
                                 else if (board[i, k].sameTile(board[i, j]))
                                 {
-                                    maxMergedValue = Math.Max(maxMergedValue, board[i, j].increase());
+                                    maxMergedValue = Math.Max(maxMergedValue, board[i, j].mergeValue());
                                    board[i, k].removeTile();
                                     boardAdd = true;
                                     newScore += board[i, j].Value;
@@ -219,7 +224,7 @@ namespace _2048
                                 }
                                 else if (board[k, j].sameTile(board[i, j]))
                                 {
-                                    maxMergedValue = Math.Max(maxMergedValue, board[i, j].increase());
+                                    maxMergedValue = Math.Max(maxMergedValue, board[i, j].mergeValue());
                                     board[k, j].setMerged(true);
                                     newScore += board[i, j].Value;
                                     
@@ -259,7 +264,7 @@ namespace _2048
                                 }
                                 else if (board[i, k].sameTile(board[i, j]))
                                 {
-                                    maxMergedValue = Math.Max(maxMergedValue, board[i, j].increase());
+                                    maxMergedValue = Math.Max(maxMergedValue, board[i, j].mergeValue());
                                     board[i, k].setMerged(true);
                                     newScore += board[i, j].Value;
                                     board[i, k].removeTile();
@@ -298,7 +303,7 @@ namespace _2048
                                 }
                                 else if (board[k, j].sameTile(board[i, j]))
                                 {
-                                    maxMergedValue = Math.Max(maxMergedValue, board[i, j].increase());
+                                    maxMergedValue = Math.Max(maxMergedValue, board[i, j].mergeValue());
                                     board[k, j].setMerged(true);
                                    newScore += board[i, j].Value;
                                     board[k, j].removeTile();
@@ -332,26 +337,28 @@ namespace _2048
                 this.addRandomTile();
             }
         }
-
+        //update when using keypress
         public void Update()
         {
             while (!gridEmpty() && addNumber > 0)
             {
                 int nX = rand.Next(0, 4), nY = rand.Next(0, 4);
 
-                if (board[nX,nY].Value == 0)
+                if (board[nX, nY].Value == 0)
                 {
-                    board[nX,nY].Value = rand.Next(0, 20) == 0 ? rand.Next(0, 15) == 0 ? 8 : 4 : 2;
+                    board[nX, nY].Value = rand.Next(0, 20) == 0 ? rand.Next(0, 15) == 0 ? 8 : 4 : 2;
                     newX = nX;
                     newY = nY;
-                    --addNumber;
+                     --addNumber;
                 }
             }
         }
+        //a getter for the score 
         public int getScoreValue()
         {
             return newScore;
         }
+        //a etter for the score 
         public void setScoreValue(int value)
         {
             this.newScore = value;

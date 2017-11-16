@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace _2048
 {
-    //What is the purpose of the Tile Class? To keep track of the tiles
+    //The purpose of the Tile Class is To keep track of the tiles
     public class Tile
     {
         private int value;
@@ -51,11 +51,6 @@ namespace _2048
             }
         }
 
-        //public void merge(Tile tile)
-        //{
-        //    this.setValue(value + tile.getValue());
-        //}
-
         public bool equals(Tile otherTile)
         {
             return otherTile.getValue() == this.getValue();
@@ -78,16 +73,6 @@ namespace _2048
             return merged;
         }
         
-        public int mergeWith(Tile otherTile)
-        {
-            if (canMergeWith(otherTile))
-            {
-                value *= 2;
-                merged = true;
-                return value;
-            }
-            return -1;
-        }
         public bool canMergeWith(Tile otherTile)
         {
             return !merged && otherTile != null && !otherTile.merged && value == otherTile.getValue();
@@ -95,12 +80,15 @@ namespace _2048
             //if so merge it.
             //return false;
         }
+        //getter and setter for value
         public int Value
         {
             get { return this.value; }
             set { this.value = value;}
         }
-
+        //checks to see if the tile is empty by seeing if the value is 0
+        //empty returns true if the value is 0
+        //empty returns false otherwise
         public Boolean isEmpty()
         {
             bool empty = false;
@@ -110,12 +98,13 @@ namespace _2048
             }
             return empty;
         }
-        public int increase()
+        //when tile is merged, the value multiplies by 2 to increase the value 
+        public int mergeValue()
         {
             value = value * 2 ;
             return value;
         }
-
+        //returns the value, initializes the value to 0 which makes the tile empty
         public int removeTile()
         {
             this.value = 0;
