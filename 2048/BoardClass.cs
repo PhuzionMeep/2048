@@ -165,6 +165,7 @@ namespace _2048
         //if so, merge it and remove one of the tile.
         public void moveBoard(Direction moveDirection)
         {
+            //check to see if the board is full
             if (gridEmpty() == false)
             {
                 return;
@@ -173,6 +174,7 @@ namespace _2048
             int maxMergedValue = 2;
             switch (moveDirection)
             {
+                //case left
                 case Direction.eLEFT:
                     for (int i = 0; i < 4; i++)
                     {
@@ -211,6 +213,7 @@ namespace _2048
                         }
                     }
                     break;
+                    //case down
                 case Direction.eBOTTOM:
                     for (int j = 0; j < 4; j++)
                     {
@@ -251,6 +254,7 @@ namespace _2048
                         }
                     }
                     break;
+                    //case right
                 case Direction.eRIGHT:
                     for (int i = 0; i < 4; i++)
                     {
@@ -290,6 +294,7 @@ namespace _2048
                         }
                     }
                     break;
+                    //case up
                 case Direction.eTOP:
                     for (int j = 0; j < 4; j++)
                     {
