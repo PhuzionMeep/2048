@@ -56,7 +56,7 @@ namespace _2048
                     newLabel[row, col].Visible = true;
                     newLabel[row, col].BackColor = System.Drawing.SystemColors.ScrollBar;
                     newLabel[row, col].Name = "lbl" + row + col;
-                    newLabel[row, col].Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    newLabel[row, col].Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     newLabel[row, col].TextAlign = ContentAlignment.MiddleCenter;
                    // newLabel[row, col]
                     pnlBoard.Controls.Add(newLabel[row, col]);
@@ -178,12 +178,12 @@ namespace _2048
         //resets the game by filling the board with 0, adding the 2 random tiles and resets the score back to 0
         private void btnResetGame_Click(object sender, EventArgs e)
         {
-
             internalboardRep.fillBoard();
             writeBoard();
             score.resetScore();
             internalboardRep.setScoreValue(0);
             txtScore.Text = "";
+            MessageBox.Show("GAME HAS RESET");
         }
         //connects the arrow keys and w,a,s,d keys to the click events of the corresponding keys
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
